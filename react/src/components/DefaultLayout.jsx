@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import axiosClient from "../axios-client";
 
 export default function DefaultLayout () {
-    const {user, token, setUser, setToken} = useStateContext();
+    const {user, token, setUser, setToken, notification} = useStateContext();
     // debugger;
     if(!token) {
         return <Navigate to="/login" />
@@ -43,6 +43,9 @@ export default function DefaultLayout () {
                         <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
                     </div>
                 </header>
+                { notification && (
+                    <div>{notification}</div>
+                )}
                 <main>
                     <Outlet />
                 </main>
